@@ -1,14 +1,19 @@
 # 期末專案：輕量級基於預言機的跨鏈橋原型 (Lightweight Oracle-Based Cross-Chain Bridge Prototype)
 
 **作者 (Author):** 卓岳霆 (Yueh-Ting Chuo)
+
 **學號 (Student ID):** 110062236
+
 **Email:** timchuo03@gmail.com
-**GitHub Repository:** [你的 GitHub Repo 連結]
+
+**GitHub Repository:** [Lightweight-Cross-Chain-Bridge-Prototype
+](https://github.com/TimChuo0416/Lightweight-Cross-Chain-Bridge-Prototype)
+
 **期末專案進度報告 (Progress Report):** [./Final_Project_Progress_Report.pdf](Final_Project_Progress_Report.pdf)
 
 ## 專案概述 (Project Overview)
 
-本專案旨在研究並設計一個**輕量級的基於預言機/中繼器 (Oracle/Relayer) 的跨鏈橋原型**。當前區塊鏈生態系統面臨著互操作性的挑戰，現有的跨鏈解決方案往往伴隨著高延遲和實作複雜性等問題。本專案提出的原型利用**授權預言機節點群 (Authorized Oracle/Relayer Nodes)** 和**數位簽章 (Digital Signatures)** 進行跨鏈訊息驗證，目標是顯著降低端對端延遲並簡化部署流程，特別是與完全去信任化的輕客戶端協議相比。
+本專案旨在研究並設計一個**Lightweight的預言機/中繼器 (Oracle/Relayer) base的跨鏈橋原型**。現有的跨鏈解決方案，往往伴隨著高延遲和實作複雜性等問題。本專案提出的原型利用**(Authorized Oracle/Relayer Nodes)** 和**數位簽章 (Digital Signatures)** 進行跨鏈訊息驗證，目標是降低端對端延遲並簡化部署流程。
 
 ## 動機 (Motivation)
 
@@ -36,11 +41,12 @@
 
 **預期效益：**
 * **更快的結算速度：** 目標 P95 延遲小於 10 秒。
-* **更簡潔的代碼：** 無需複雜的輕客戶端邏輯，核心合約代碼量預計約 1.9k LoC。
+* **更簡潔的代碼：** 無需複雜的輕客戶端邏輯，核心合約代碼量預計不到 2k LoC。
 * **易於部署：** 任何 EVM 兼容鏈只需白名單一組公鑰即可啟用橋接，無需修改共識。
 * **有界信任安全：** 安全性依賴於中繼器群體的誠實性，可通過 Staking/Slashing 機制和暫停開關來降低勾結風險。
 
-**(可在此處嵌入你的流程圖： `![Bridge Workflow](research-and-design/Bridge_Workflow_Diagram.png)` )**
+![image](https://github.com/user-attachments/assets/08fdc541-af49-48dc-a254-8fd2341a3d79)
+
 
 ## 技術驗證雛形 (Proof-of-Concept DApp - ProofOfText)
 
@@ -54,7 +60,7 @@
     * 以太坊庫：ethers.js (v6)
     * 部署：合約部署於 Sepolia 測試網，前端部署於 Netlify。
 * **詳細資訊和運行指南：** 請參閱 [`./proof-of-text-dapp/README.md`](./proof-of-text-dapp/README.md)
-* **線上演示 (Netlify)：** [你的 ProofOfText DApp Netlify 連結]
+* **線上演示 (Netlify)：** [[DApp Netlify 連結](https://6822e3aa7bfc0ad6a88053d4--enchanting-pixie-b6e1c1.netlify.app/)]
 * **Sepolia 合約地址：** `0x87f728AdA36c5A35C9D69466F765aa7998F8e3D5`
 * **Etherscan 連結：** [https://sepolia.etherscan.io/address/0x87f728AdA36c5A35C9D69466F765aa7998F8e3D5](https://sepolia.etherscan.io/address/0x87f728AdA36c5A35C9D69466F765aa7998F8e3D5)
 
@@ -69,7 +75,7 @@
 * Hardhat 環境設定：已完成
 * 核心合約 (A/B) 編寫：進行中 (約 30%)
 * 中繼器腳本開發：進行中 (約 30%)
-* ... (其他根據你報告中的表格)
+
 
 **未來工作重點：**
 
@@ -98,8 +104,7 @@
 * **錢包：** MetaMask
 * **測試網路：** Sepolia
 * **前端部署：** Netlify
-* **(未來可能涉及中繼器部分)：** Node.js, etc.
 
 ## 聯繫方式 (Contact)
 
-卓岳霆 (Yueh-Ting Chuo) - timchuo03@gapp.nthu.edu.tw
+卓岳霆 (Yueh-Ting Chuo) - timchuo03@gmail.com
