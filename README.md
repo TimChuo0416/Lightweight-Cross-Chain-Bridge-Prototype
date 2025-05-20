@@ -1,4 +1,4 @@
-# 期末專案：輕量級基於預言機的跨鏈橋原型 (Lightweight Oracle-Based Cross-Chain Bridge Prototype)
+# 期末專案：Lightweight Oracle-Based Cross-Chain Bridge Prototype
 
 **作者 (Author):** 卓岳霆 (Yueh-Ting Chuo)
 
