@@ -1,4 +1,4 @@
-# 期末專案：Lightweight Oracle-Based Cross-Chain Bridge Prototype
+# BlockChain 期末專案：Lightweight Oracle-Based Cross-Chain Bridge Prototype
 
 **作者 (Author):** 卓岳霆 (Yueh-Ting Chuo)
 
@@ -13,7 +13,7 @@
 
 ## 專案概述 (Project Overview)
 
-本專案旨在研究並設計一個**Lightweight的預言機/中繼器 (Oracle/Relayer) base的跨鏈橋原型**。現有的跨鏈解決方案，往往伴隨著高延遲和實作複雜性等問題。本專案提出的原型利用**(Authorized Oracle/Relayer Nodes)** 和**數位簽章 (Digital Signatures)** 進行跨鏈訊息驗證，目標是降低端對端延遲並簡化部署流程。
+本專案旨在研究並設計一個**Lightweight的預言機/中繼器 (Oracle/Relayer) base的跨鏈橋原型**。現有的跨鏈解決方案，往往伴隨著高延遲和實作複雜性等問題。本專案提出的原型利用(Authorized Oracle/Relayer Nodes) 和**數位簽章 (Digital Signatures)** 進行跨鏈訊息驗證，目標是降低端對端延遲並簡化部署流程。
 
 ## 動機 (Motivation)
 
@@ -66,7 +66,7 @@
 
 ## 專案進度與未來工作 (Current Progress & Future Work)
 
-詳細的專案進度、已完成的文獻調研、更細緻的設計考量以及未來的開發和評估計劃，請參閱完整的**[期末專案進度報告 (Final Project Progress Report)](./Final_Project_Progress_Report_110062236.pdf)**。
+詳細的專案進度、已完成的文獻研究、更細緻的設計考量以及未來的開發和評估計劃，請參閱完整的[期末專案進度報告 (Final Project Progress Report)](./Final_Project_Progress_Report_110062236.pdf)。
 
 **主要進度概覽：**
 
