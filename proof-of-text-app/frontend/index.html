@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProofOfText DApp - Local</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ProofOfText DApp</h1>
+
+        <div class="input-area">
+            <label for="msg">Enter Your Message:</label>
+            <input type="text" id="msg" placeholder="Type something..." />
+        </div>
+
+        <button id="lock" disabled>Lock Message</button>
+        <button id="get">Get My Last Message</button>
+        <div id="retrievedMessage"></div>
+        <div id="status">
+            Initializing... Please connect your MetaMask wallet (Hardhat Local network).
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.14.0/dist/ethers.umd.min.js" type="application/javascript"></script>
+    <script src="index.js"></script>
+</body>
+</html>
