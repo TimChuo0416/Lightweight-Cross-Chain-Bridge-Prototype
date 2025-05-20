@@ -8,8 +8,6 @@ const retrievedMessageDiv = document.getElementById('retrievedMessage');
 
 
 const contractAddress = "0x87f728AdA36c5A35C9D69466F765aa7998F8e3D5";
-// ABI (Application Binary Interface) - Describes how to interact with the contract
-// You can get this from artifacts/contracts/ProofOfText.sol/ProofOfText.json after compiling
 
 const contractABI = [
     {
@@ -80,36 +78,33 @@ let contract; // Ethers.js contract instance
 // Function to connect to MetaMask
 async function connectWallet() {
     statusDiv.textContent = 'Connecting to MetaMask...';
-    statusDiv.className = ''; // 清除舊的 class
-    lockButton.disabled = true; // 連接過程中先禁用按鈕
+    statusDiv.className = '';
+    lockButton.disabled = true; 
 
     if (typeof window.ethereum !== 'undefined') {
         try {
             // Request account access
             await window.ethereum.request({ method: 'eth_requestAccounts' });
-            // Create Ethers provider from MetaMask provider
             provider = new ethers.BrowserProvider(window.ethereum);
-            // Get the signer (account) (v6 - now async)
             signer = await provider.getSigner();
-            // Get the connected account address
             const userAddress = await signer.getAddress();
 
             // Instantiate the contract
             contract = new ethers.Contract(contractAddress, contractABI, signer);
 
             statusDiv.textContent = `Wallet connected: ${userAddress}. Ready to interact.`;
-            statusDiv.className = 'success'; // **新增**: 連接成功，設為 success class
+            statusDiv.className = 'success';
             lockButton.disabled = false; // Enable button after connection
-            // Optional: Automatically get the user's last message upon connection
+
             // displayUserMessage();
         } catch (error) {
             console.error("User rejected connection or error:", error);
-            statusDiv.textContent = `Connection failed: ${error.message}. Please ensure you are on the Hardhat Local network.`;
+            statusDiv.textContent = `Connection failed: ${error.message}.`;
             statusDiv.className = 'error';
             lockButton.disabled = true;
         }
     } else {
-        statusDiv.textContent = 'MetaMask is not installed. Please install MetaMask and refresh.';
+        statusDiv.textContent = 'MetaMask is not installed.';
         statusDiv.className = 'error';
         lockButton.disabled = true;
     }
@@ -129,13 +124,13 @@ async function handleLockMessage() {
         return;
     }
 
-    statusDiv.textContent = `Locking message "${messageText}"... (Waiting for transaction confirmation)`;
+    statusDiv.textContent = `Locking message "${messageText}"...`;
     statusDiv.className = 'pending';
     lockButton.disabled = true; // Disable button during transaction
 
     try {
         // Send the transaction to the contract's lockMessage function
-        // Include a small amount of ETH (e.g., 0.001 ETH) as defined in the contract test
+        // Include a small amount of ETH as defined in the contract test
         const txValue = ethers.parseEther("0.001");
         const tx = await contract.lockMessage(messageText, { value: txValue });
 
@@ -148,7 +143,7 @@ async function handleLockMessage() {
         statusDiv.textContent = `Message "${messageText}" locked successfully! Transaction confirmed.`;
         statusDiv.className = 'success';
         messageInput.value = ''; // Clear input field
-        // Optional: Refresh displayed message after locking
+
         // displayUserMessage();
 
     } catch (error) {
@@ -163,7 +158,7 @@ async function handleLockMessage() {
         statusDiv.textContent = `Error locking message: ${errorMessage}`;
         statusDiv.className = 'error';
     } finally {
-        lockButton.disabled = false; // Re-enable button
+        lockButton.disabled = false;
     }
 }
 
@@ -181,14 +176,13 @@ async function displayUserMessage() {
       }
   } catch (error) {
       console.error("Error fetching message:", error);
-      // Handle error silently or display a specific error message
   }
 }
 
 
 async function handleGetMessage() {
-    retrievedMessageDiv.textContent = 'Fetching message...'; // 顯示讀取中
-    retrievedMessageDiv.className = ''; // 清除舊樣式
+    retrievedMessageDiv.textContent = 'Fetching message...';
+    retrievedMessageDiv.className = '';
 
     if (!contract || !signer) {
         retrievedMessageDiv.textContent = 'Please connect your wallet first.';
@@ -199,7 +193,7 @@ async function handleGetMessage() {
     try {
         // 獲取當前連接的地址
         const userAddress = await signer.getAddress();
-        // 呼叫合約的 getMessage 函式 (這是 view call，不需交易)
+        // 呼叫合約的 getMessage 函式
         const message = await contract.getMessage(userAddress);
 
         if (message) {
@@ -221,9 +215,9 @@ async function handleGetMessage() {
 window.addEventListener('load', () => {
     // 設定初始狀態文字和樣式
     statusDiv.textContent = 'Initializing... Please connect your MetaMask wallet (Hardhat Local network).';
-    statusDiv.className = ''; // 初始無特殊 class
-    lockButton.disabled = true; // 初始禁用按鈕
-    // 然後嘗試連接錢包
+    statusDiv.className = ''; // 初始化
+    lockButton.disabled = true;
+    // 連接錢包
     connectWallet();
 });
 
