@@ -144,7 +144,7 @@ contract BridgeContractB is Ownable {
 
     function setMThreshold(uint8 _newM) external onlyOwner {
         require(_newM > 0, "BridgeContractB: M_threshold must be greater than 0");
-        require(_newM <= _relayerCount(), "BridgeContractB: M_threshold must be less than or equal to the number of relayers");
+        // require(_newM <= _relayerCount(), "BridgeContractB: M_threshold must be less than or equal to the number of relayers");
         M_threshold = _newM;
         // 可選: emit MThresholdChanged(_newM);
     }
