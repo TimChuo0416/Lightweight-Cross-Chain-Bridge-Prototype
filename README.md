@@ -1,9 +1,13 @@
 # 期末專案：輕量級基於預言機的跨鏈橋原型 (Lightweight Oracle-Based Cross-Chain Bridge Prototype)
 
 **作者 (Author):** 卓岳霆 (Yueh-Ting Chuo)
+
 **學號 (Student ID):** 110062236
+
 **Email:** timchuo03@gmail.com
-**GitHub Repository:** [你的 GitHub Repo 連結]
+
+**GitHub Repository:** [\[你的 GitHub Repo 連結\]](https://github.com/TimChuo0416/Lightweight-Cross-Chain-Bridge-Prototype)
+
 **期末專案進度報告 (Progress Report):** [./Final_Project_Progress_Report.pdf](Final_Project_Progress_Report.pdf)
 
 ## 專案概述 (Project Overview)
