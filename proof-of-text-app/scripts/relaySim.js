@@ -1,7 +1,7 @@
 const { ethers } = require("hardhat");
 
 async function main() {
-  const [deployer, relayer1, relayer2, user] = await ethers.getSigners();
+  const [deployer, relayer1, relayer2, relayer3, user] = await ethers.getSigners();
 
   // Deploy BridgeContractA
   const fee = ethers.parseEther("0.001");
@@ -9,12 +9,13 @@ async function main() {
   const bridgeA = await BridgeA.deploy(fee);
   await bridgeA.waitForDeployment();
 
-  // Deploy BridgeContractB with relayers and M=2
+  // Deploy BridgeContractB with three relayers but only require M=2 signatures
   const BridgeB = await ethers.getContractFactory("BridgeContractB");
   const bridgeB = await BridgeB.deploy([
     relayer1.address,
-    relayer2.address
-  ], 2);
+    relayer2.address,
+    relayer3.address
+  ], 2); // M = 2, N = 3
   await bridgeB.waitForDeployment();
 
   console.log("BridgeA deployed at", await bridgeA.getAddress());
@@ -47,9 +48,10 @@ async function main() {
   );
 
   // Relayers sign the message
+  // Demonstrate M-of-N by letting only two of the three relayers sign
   const sig1 = await relayer1.signMessage(ethers.getBytes(messageHash));
-  const sig2 = await relayer2.signMessage(ethers.getBytes(messageHash));
-  const signatures = [sig1, sig2];
+  const sig3 = await relayer3.signMessage(ethers.getBytes(messageHash));
+  const signatures = [sig1, sig3];
 
   // Relay to BridgeB
   const execTx = await bridgeB.executeCrossChainCommand(
