@@ -4,10 +4,19 @@ const lockButton = document.getElementById('lock');
 const messageInput = document.getElementById('msg');
 const getButton = document.getElementById('get'); 
 const statusDiv = document.getElementById('status');
-const retrievedMessageDiv = document.getElementById('retrievedMessage'); 
+const retrievedMessageDiv = document.getElementById('retrievedMessage');
+
+const bridgeLogDiv = document.getElementById('bridgeLog');
 
 
 const contractAddress = "0x87f728AdA36c5A35C9D69466F765aa7998F8e3D5";
+
+const bridgeBAddress = "0x0000000000000000000000000000000000000000"; // set after deployment
+const bridgeBAbi = [
+  "event CommandExecuted(bytes32 indexed requestId,address indexed recipient,uint256 amount,bytes1 commandCode,bytes commandData,string message)"
+];
+let bridgeContractB;
+
 
 const contractABI = [
     {
@@ -91,6 +100,11 @@ async function connectWallet() {
 
             // Instantiate the contract
             contract = new ethers.Contract(contractAddress, contractABI, signer);
+            bridgeContractB = new ethers.Contract(bridgeBAddress, bridgeBAbi, provider);
+            bridgeContractB.on("CommandExecuted", (requestId, recipient, amount, commandCode, commandData, message) => {
+                const line = `CommandExecuted ${requestId} recipient=${recipient} message=${message}`;
+                bridgeLogDiv.textContent += line + "\n";
+            });
 
             statusDiv.textContent = `Wallet connected: ${userAddress}. Ready to interact.`;
             statusDiv.className = 'success';
